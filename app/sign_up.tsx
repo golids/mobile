@@ -109,7 +109,7 @@ const SignUp = () => {
 
         {/* Sign Up Button */}
         <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginButtonText}>Sign Up</Text>
+          <Text style={styles.SignupButtonText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -167,10 +167,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 15,
     padding: 20,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
   },
   input: {
     height: 50,
@@ -221,7 +217,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
   },
-  loginButtonText: {
+  SignupButtonText: {
     color: "#FFFFFF",
     fontSize: 18,
     fontWeight: "bold",

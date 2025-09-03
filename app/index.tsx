@@ -129,10 +129,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     borderRadius: 15,
     padding: 20,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
   },
   input: {
     height: 50,
