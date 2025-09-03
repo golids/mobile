@@ -1,97 +1,41 @@
 import { Link } from "expo-router";
 import { Feather } from "@expo/vector-icons"
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Image,
-  Text,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, Image, Text, TextInput, TouchableOpacity, } from "react-native";
 
 const SignUp = () => {
   return (
     <View style={styles.container}>
-
-        <View style={styles.backIconContainer}>
+      <View style={styles.backIconContainer}>
         <Link href="/" asChild>
-            <TouchableOpacity>
+          <TouchableOpacity>
             <Feather name="arrow-left" size={40} color="#9e9e9eff"/>
-            </TouchableOpacity>
+          </TouchableOpacity>
         </Link>
-        </View>
-
+      </View>
 
       {/* Logo + tagline */}
       <View style={styles.topImageContainer}>
-        <Image
-          source={require("../assets/images/LU-Logo.png")}
-          style={styles.logo}
-        />
+        <Image source={require("../assets/images/LU-Logo.png")} style={styles.logo} />
         <Text style={styles.logoName}>You find it fast, you claim it easy.</Text>
-        <Text style={styles.loginText}>SIGN UP</Text>
-        <Text style={styles.loginDescription}>
-          Please fill-in the details
-        </Text>
+        <Text style={styles.signupText}>SIGN UP</Text>
+        <Text style={styles.signupDescription}>Please fill-in the details</Text>
       </View>
 
-      
-
-
       {/* Sign Up form */}
-      <View style={styles.loginContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Name"
-          placeholderTextColor="#888"
-        />
-
+      <View style={styles.signupContainer}>
+        <TextInput style={styles.input} placeholder="Name" placeholderTextColor="#888" />
         <View style={styles.rowContainer}>
-          <TextInput
-            style={[styles.input, styles.halfInput]}
-            placeholder="Age"
-            placeholderTextColor="#888"
-            keyboardType="numeric"
-          />
-          <TextInput
-            style={[styles.input, styles.halfInput]}
-            placeholder="ID Number"
-            placeholderTextColor="#888"
-          />
+          <TextInput style={[styles.input, styles.halfInput]} placeholder="Age" placeholderTextColor="#888" keyboardType="numeric" />
+          <TextInput style={[styles.input, styles.halfInput]} placeholder="ID Number" placeholderTextColor="#888" />
         </View>
-
         <View style={styles.rowContainer}>
-          <TextInput
-            style={[styles.input, styles.halfInput]}
-            placeholder="College"
-            placeholderTextColor="#888"
-          />
-          <TextInput
-            style={[styles.input, styles.halfInput]}
-            placeholder="Program"
-            placeholderTextColor="#888"
-          />
+          <TextInput style={[styles.input, styles.halfInput]} placeholder="College" placeholderTextColor="#888" />
+          <TextInput style={[styles.input, styles.halfInput]} placeholder="Program" placeholderTextColor="#888" />
         </View>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Contact Number"
-          placeholderTextColor="#888"
-          keyboardType="phone-pad"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          placeholderTextColor="#888"
-          keyboardType="email-address"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor="#888"
-          secureTextEntry
-        />
+        <TextInput style={styles.input} placeholder="Contact Number" placeholderTextColor="#888" keyboardType="phone-pad" />
+        <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#888" keyboardType="email-address" />
+        <TextInput style={styles.input} placeholder="Password" placeholderTextColor="#888" secureTextEntry />
 
         {/* Role Selection */}
         <Text style={styles.selectText}>Please SELECT</Text>
@@ -108,8 +52,8 @@ const SignUp = () => {
         </View>
 
         {/* Sign Up Button */}
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.SignupButtonText}>Sign Up</Text>
+        <TouchableOpacity style={styles.signupButton}>
+          <Text style={styles.signupButtonText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -117,15 +61,11 @@ const SignUp = () => {
 };
 
 const styles = StyleSheet.create({
-
-    
   backIconContainer: {
     width: 50,
-    //backgroundColor: "grey",
     marginTop: 50,
     marginHorizontal: 50,
   },
-
   container: {
     flex: 1,
     backgroundColor: "#EAFDFF",
@@ -148,21 +88,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 5,
   },
-  loginText: {
+  signupText: {
     fontSize: 28,
     fontWeight: "bold",
     color: "#000000",
     textAlign: "center",
     marginTop: 10,
   },
-  loginDescription: {
+  signupDescription: {
     fontSize: 16,
     fontWeight: "400",
     color: "#808080",
     textAlign: "center",
     marginTop: 5,
   },
-  loginContainer: {
+  signupContainer: {
     marginHorizontal: 30,
     marginTop: 10,
     borderRadius: 15,
@@ -209,7 +149,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
   },
-  loginButton: {
+  signupButton: {
     width: "100%",
     backgroundColor: "#00204A",
     borderRadius: 15,
@@ -217,7 +157,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
   },
-  SignupButtonText: {
+  signupButtonText: {
     color: "#FFFFFF",
     fontSize: 18,
     fontWeight: "bold",
