@@ -1,7 +1,7 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
 import React from 'react'
 
-const home = () => {
+const find = () => {
   return (
     <View style={styles.container}>
       <Image 
@@ -9,7 +9,7 @@ const home = () => {
         style={styles.logo}
         resizeMode="contain"
       />
-      <Text style={styles.text}>Home Screen Content Coming Soon</Text>
+      <Text style={styles.text}>Find Screen Content Coming Soon</Text>
     </View>
   )
 }
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default home
+export default find
