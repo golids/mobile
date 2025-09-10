@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import React from "react";
 import {
   View,
@@ -10,12 +10,19 @@ import {
 } from "react-native";
 
 const Index = () => {
+  const router = useRouter();
+
+  const handleLogin = () => {
+    // Navigate to home tab
+    router.replace("/tabs/home");
+  };
+
   return (
     <View style={styles.container}>
       {/* Logo + tagline */}
       <View style={styles.topImageContainer}>
         <Image
-          source={require("../assets/images/LU-Logo.png")} // make sure filename has no spaces
+          source={require("../assets/images/LU-Logo.png")}
           style={styles.logo}
         />
         <Text style={styles.logoName}>You find it fast, you claim it easy.</Text>
@@ -43,17 +50,17 @@ const Index = () => {
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginButton}>
+        {/* ✅ This button now navigates to (tabs)/home */}
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Log In</Text>
         </TouchableOpacity>
 
         {/* Sign Up text */}
         <Text style={styles.signupText}>
-          Don’t have an account? 
-          <Link href="/sign_up">
-          <Text style={styles.signupLink}> Sign Up</Text>
+          Don't have an account?
+          <Link href="/sign_up" asChild>
+            <Text style={styles.signupLink}> Sign Up</Text>
           </Link>
-          
         </Text>
 
         {/* Divider text */}
@@ -205,8 +212,6 @@ const styles = StyleSheet.create({
     color: "#00204A",
     fontFamily: "Roboto-Regular",
   },
-
-
 });
 
 export default Index;
