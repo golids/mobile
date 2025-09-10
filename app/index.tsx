@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#000000",
     textAlign: "center",
-    marginTop: 50,
+    marginTop: 30,
     fontFamily: "Roboto-Bold",
   },
   loginDescription: {
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   },
   socialIcon: {
     width: 50,
-    height: 70,
+    height: 50,
     resizeMode: "contain",
   },
 
