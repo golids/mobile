@@ -50,7 +50,7 @@ const Index = () => {
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        {/* ✅ This button now navigates to (tabs)/home */}
+        {/*This button now navigates to (tabs)/home */}
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Log In</Text>
         </TouchableOpacity>
