@@ -40,7 +40,7 @@ export default function TabsLayout() {
       options={{
         title: "Settings",
         tabBarIcon: ({ color, size}) => (
-          <Ionicons name= "settings" size ={size} color={color}/>
+          <Ionicons name= "settings-outline" size ={size} color={color}/>
         )
       }}
       />
@@ -49,7 +49,7 @@ export default function TabsLayout() {
       options={{
         title: "Profile",
         tabBarIcon: ({ color, size}) => (
-          <Ionicons name= "person-circle" size ={size} color={color}/>
+          <Ionicons name= "person-circle-outline" size ={size} color={color}/>
         )
       }}
       />

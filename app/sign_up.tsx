@@ -1,9 +1,16 @@
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { Feather } from "@expo/vector-icons"
 import React from "react";
 import { View, StyleSheet, Image, Text, TextInput, TouchableOpacity, } from "react-native";
 
 const SignUp = () => {
+  const router = useRouter();
+  
+  const handleSignup = () => {
+    // Navigate to home tab - corrected path
+    router.replace("/tabs/home");
+  };
+  
   return (
     <View style={styles.container}>
       <View style={styles.backIconContainer}>
@@ -52,7 +59,7 @@ const SignUp = () => {
         </View>
 
         {/* Sign Up Button */}
-        <TouchableOpacity style={styles.signupButton}>
+        <TouchableOpacity style={styles.signupButton} onPress={handleSignup}>
           <Text style={styles.signupButtonText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
