@@ -1,5 +1,5 @@
 import { Link, useRouter } from "expo-router";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   View,
   StyleSheet,
@@ -8,14 +8,82 @@ import {
   TouchableOpacity,
   ScrollView,
   ImageBackground,
+  Animated,
+  Easing,
 } from "react-native";
 
 const Index = () => {
   const router = useRouter();
+  
+  // Animation values
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const slideUpAnim = useRef(new Animated.Value(50)).current;
+  const scaleAnim = useRef(new Animated.Value(0.8)).current;
+  const logoScale = useRef(new Animated.Value(0)).current;
+  const buttonScale = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    // Sequence of animations
+    Animated.parallel([
+      // Logo animation
+      Animated.timing(logoScale, {
+        toValue: 1,
+        duration: 800,
+        easing: Easing.elastic(1.2),
+        useNativeDriver: true,
+      }),
+      
+      // Fade in animation
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 1000,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+      
+      // Slide up animation
+      Animated.timing(slideUpAnim, {
+        toValue: 0,
+        duration: 800,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+      
+      // Scale animation
+      Animated.timing(scaleAnim, {
+        toValue: 1,
+        duration: 600,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+      
+      // Button animation (delayed)
+      Animated.timing(buttonScale, {
+        toValue: 1,
+        duration: 700,
+        delay: 300,
+        easing: Easing.elastic(1),
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
 
   const handleBeginJourney = () => {
-    // Navigate to the main app screen
-    router.push("/journey1");
+    // Scale down animation when button is pressed
+    Animated.timing(buttonScale, {
+      toValue: 0.95,
+      duration: 100,
+      useNativeDriver: true,
+    }).start(() => {
+      Animated.timing(buttonScale, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }).start(() => {
+        // Navigate to the main app screen after animation
+        router.push("/journey1");
+      });
+    });
   };
 
   const navigateToExodus = () => {
@@ -28,39 +96,117 @@ const Index = () => {
       style={styles.background}
     >
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {/* Logo Container at the top */}
-        <View style={styles.logoContainer}>
-          <Image
+        {/* Logo Container at the top with animation */}
+        <Animated.View 
+          style={[
+            styles.logoContainer,
+            {
+              opacity: fadeAnim,
+              transform: [
+                { scale: logoScale },
+                { translateY: slideUpAnim }
+              ]
+            }
+          ]}
+        >
+          <Animated.Image
             source={require("../assets/images/ustp-img.png")}
-            style={styles.ustpLogo}
+            style={[
+              styles.ustpLogo,
+              {
+                transform: [{
+                  scale: scaleAnim
+                }]
+              }
+            ]}
             resizeMode="contain"
           />
-          <Image
+          <Animated.Image
             source={require("../assets/images/LF-White.png")}
-            style={styles.appLogo}
+            style={[
+              styles.appLogo,
+              {
+                opacity: fadeAnim,
+                transform: [{
+                  scale: scaleAnim
+                }]
+              }
+            ]}
             resizeMode="contain"
           />
-        </View>
+        </Animated.View>
 
-        <View style={styles.content}>
-          <Text style={styles.tagline}>"You find it fast, you claim it easy."</Text>
+        <Animated.View 
+          style={[
+            styles.content,
+            {
+              opacity: fadeAnim,
+              transform: [
+                { translateY: slideUpAnim }
+              ]
+            }
+          ]}
+        >
+          <Animated.Text 
+            style={[
+              styles.tagline,
+              {
+                opacity: fadeAnim,
+                transform: [
+                  { translateY: slideUpAnim }
+                ]
+              }
+            ]}
+          >
+            "You find it fast, you claim it easy."
+          </Animated.Text>
 
-          <Text style={styles.description}>
+          <Animated.Text 
+            style={[
+              styles.description,
+              {
+                opacity: fadeAnim,
+                transform: [
+                  { translateY: slideUpAnim }
+                ]
+              }
+            ]}
+          >
             Connecting students, faculty, and staff in USTP-CDO to find or return lost items
             quickly and easily.
-          </Text>
+          </Animated.Text>
 
-          <TouchableOpacity style={styles.button} onPress={handleBeginJourney}>
-            <Text style={styles.buttonText}>BEGIN MY JOURNEY</Text>
-          </TouchableOpacity>
+          <Animated.View
+            style={{
+              transform: [{ scale: buttonScale }]
+            }}
+          >
+            <TouchableOpacity 
+              style={styles.button} 
+              onPress={handleBeginJourney}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.buttonText}>BEGIN MY JOURNEY</Text>
+            </TouchableOpacity>
+          </Animated.View>
 
-          <View style={styles.footer}>
+          <Animated.View 
+            style={[
+              styles.footer,
+              {
+                opacity: fadeAnim,
+                transform: [
+                  { translateY: slideUpAnim }
+                ]
+              }
+            ]}
+          >
             <Text style={styles.footerText}>Powered by </Text>
             <TouchableOpacity onPress={navigateToExodus}>
               <Text style={styles.exodusLink}>EXODUS</Text>
             </TouchableOpacity>
-          </View>
-        </View>
+          </Animated.View>
+        </Animated.View>
       </ScrollView>
     </ImageBackground>
   );
@@ -121,11 +267,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     borderRadius: 30,
     marginBottom: 70,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+    elevation: 8,
   },
   buttonText: {
     fontFamily: "Roboto-Bold",
     fontSize: 18,
     color: "#000728",
+    textAlign: "center",
   },
   footer: {
     flexDirection: "row",

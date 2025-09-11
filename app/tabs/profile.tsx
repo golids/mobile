@@ -56,6 +56,20 @@ const Profile = () => {
     router.replace('/login');
   };
 
+  const handleMenuItemPress = (itemTitle: string) => {
+    setIsPanelOpen(false); // Close the panel first
+    
+    // Add a small delay to allow the panel to close before navigating
+    setTimeout(() => {
+      if (itemTitle === 'Terms & Condition') {
+        router.push('/terms_cond'); // Navigate to Terms & Conditions page
+      } else {
+        console.log(`${itemTitle} pressed`);
+        // Add navigation for other menu items here if needed
+      }
+    }, 300); // Match the duration of the panel closing animation
+  };
+
   const menuItems = [
     { id: 1, title: 'Account Management', icon: 'person-outline' },
     { id: 2, title: 'Notifications', icon: 'notifications-outline' },
@@ -107,10 +121,10 @@ const Profile = () => {
               <TouchableOpacity
                 key={item.id}
                 style={styles.menuItem}
-                onPress={() => console.log(`${item.title} pressed`)}
+                onPress={() => handleMenuItemPress(item.title)}
               >
                 <Ionicons 
-                  name={item.icon as any} // Quick fix: tell TypeScript to ignore the type check
+                  name={item.icon as any}
                   size={22} 
                   color="#00204A" 
                   style={styles.menuIcon} 

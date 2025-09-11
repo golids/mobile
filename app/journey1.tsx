@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -10,11 +10,53 @@ import {
   ScrollView,
   Platform,
   StatusBar,
+  Animated,
+  Easing,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const journey1 = () => {
   const router = useRouter();
+  
+  // Animation values for logo morphing
+  const logoScale = useRef(new Animated.Value(0.5)).current;
+  const logoOpacity = useRef(new Animated.Value(0)).current;
+  const contentOpacity = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    // Logo morphing animation sequence
+    Animated.sequence([
+      // Initial scale up and fade in
+      Animated.parallel([
+        Animated.timing(logoScale, {
+          toValue: 1.2,
+          duration: 600,
+          easing: Easing.out(Easing.quad),
+          useNativeDriver: true,
+        }),
+        Animated.timing(logoOpacity, {
+          toValue: 1,
+          duration: 600,
+          easing: Easing.out(Easing.quad),
+          useNativeDriver: true,
+        }),
+      ]),
+      // Scale back to normal size
+      Animated.timing(logoScale, {
+        toValue: 1,
+        duration: 400,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+      // Fade in content
+      Animated.timing(contentOpacity, {
+        toValue: 1,
+        duration: 500,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
 
   const handleNext = () => {
     // Navigate to the next onboarding screen
@@ -44,33 +86,42 @@ const journey1 = () => {
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* Logo at center-top */}
+        {/* Logo at center-top with morphing animation */}
         <View style={styles.logoContainer}>
-          <Image
+          <Animated.Image
             source={require("../assets/images/LU-Logo.png")}
-            style={styles.logo}
+            style={[
+              styles.logo,
+              {
+                opacity: logoOpacity,
+                transform: [{ scale: logoScale }]
+              }
+            ]}
             resizeMode="contain"
           />
         </View>
 
-        {/* Description text */}
-        <Text style={styles.description}>
-          Lost something? Found something? We've got you covered
-        </Text>
+        {/* Content with fade animation */}
+        <Animated.View style={{ opacity: contentOpacity }}>
+          {/* Description text */}
+          <Text style={styles.description}>
+            Lost something? Found something? We've got you covered
+          </Text>
 
-        {/* Content with image */}
-        <View style={styles.content}>
-          <Image
-            source={require("../assets/images/question.png")}
-            style={styles.image}
-            resizeMode="contain"
-          />
-        </View>
+          {/* Content with image */}
+          <View style={styles.content}>
+            <Image
+              source={require("../assets/images/question.png")}
+              style={styles.image}
+              resizeMode="contain"
+            />
+          </View>
 
-        {/* Additional text */}
-        <Text style={styles.additionalText}>
-          LF U-Stuff is your campus lost & found companion. Whether you've misplaced your student ID, phone, or even your umbrella, this app makes it simple to report, track, and recover items across the university. No more messy bulletin boards or endless searching, everything you need is right here.
-        </Text>
+          {/* Additional text */}
+          <Text style={styles.additionalText}>
+            LF U-Stuff is your campus lost & found companion. Whether you've misplaced your student ID, phone, or even your umbrella, this app makes it simple to report, track, and recover items across the university. No more messy bulletin boards or endless searching, everything you need is right here.
+          </Text>
+        </Animated.View>
       </ScrollView>
 
       {/* Page indicator positioned above buttons */}
