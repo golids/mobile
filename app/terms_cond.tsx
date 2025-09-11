@@ -47,7 +47,7 @@ const TermsCond = () => {
         >
           <View style={styles.contentContainer}>
             <Text style={styles.intro}>
-              Welcome to LF U-Skiff, the on-campus Lost & Found system of USTP-CDO. 
+              Welcome to LF U-Stuff, the on-campus Lost & Found system of USTP-CDO. 
               By creating an account and using our app, you agree to the following Terms and Conditions.
             </Text>
 
