@@ -1,5 +1,5 @@
 import { Link, useRouter } from "expo-router";
-import { Feather } from "@expo/vector-icons"
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { View, StyleSheet, Image, Text, TextInput, TouchableOpacity, } from "react-native";
 
@@ -8,17 +8,19 @@ const SignUp = () => {
   
   const handleSignup = () => {
     // Navigate to home tab - corrected path
-    router.replace("/tabs/home");
+    router.replace("/terms_cond");
   };
   
   return (
     <View style={styles.container}>
-      <View style={styles.backIconContainer}>
-        <Link href="/" asChild>
-          <TouchableOpacity>
-            <Feather name="arrow-left" size={40} color="#9e9e9eff"/>
-          </TouchableOpacity>
-        </Link>
+      {/* Header with back arrow */}
+      <View style={styles.header}>
+        <TouchableOpacity 
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
+          <Ionicons name="arrow-back" size={24} color="#00204A" />
+        </TouchableOpacity>
       </View>
 
       {/* Logo + tagline */}
@@ -68,14 +70,20 @@ const SignUp = () => {
 };
 
 const styles = StyleSheet.create({
-  backIconContainer: {
-    width: 50,
-    marginTop: 50,
-    marginHorizontal: 50,
-  },
   container: {
     flex: 1,
     backgroundColor: "#EAFDFF",
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    paddingBottom: 10,
+    backgroundColor: "#EAFDFF",
+  },
+  backButton: {
+    marginRight: 10,
   },
   topImageContainer: {
     marginTop: 0,

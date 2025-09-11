@@ -60,8 +60,9 @@ const Profile = () => {
     { id: 1, title: 'Account Management', icon: 'person-outline' },
     { id: 2, title: 'Notifications', icon: 'notifications-outline' },
     { id: 3, title: 'Privacy & Security', icon: 'lock-closed-outline' },
-    { id: 4, title: 'Help & Support', icon: 'help-circle-outline' },
-    { id: 5, title: 'About', icon: 'information-circle-outline' },
+    { id: 4, title: 'Terms & Condition', icon: 'newspaper-outline'},
+    { id: 5, title: 'Help & Support', icon: 'help-circle-outline' },
+    { id: 6, title: 'About', icon: 'information-circle-outline' },
   ];
 
   return (

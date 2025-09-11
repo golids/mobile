@@ -28,7 +28,7 @@ const Index = () => {
         <Text style={styles.logoName}>You find it fast, you claim it easy.</Text>
         <Text style={styles.loginText}>LOG IN NOW</Text>
         <Text style={styles.loginDescription}>
-          Please log-in your account to continue using our app
+          Please log-in to your account if you found or lost a stuff
         </Text>
       </View>
 
@@ -84,7 +84,10 @@ const Index = () => {
       </View>
 
       {/* Terms and Conditions at bottom */}
-      <TouchableOpacity style={styles.termsWrapper}>
+      <TouchableOpacity 
+        style={styles.termsWrapper}
+        onPress={() => router.push("/terms_cond")}
+      >
         <Text style={styles.termsText}>Terms and Conditions</Text>
       </TouchableOpacity>
     </View>
