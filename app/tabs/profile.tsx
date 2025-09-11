@@ -53,7 +53,7 @@ const Profile = () => {
 
   const handleLogout = () => {
     // Navigate back to the login page (app/index)
-    router.replace('/');
+    router.replace('/login');
   };
 
   const menuItems = [
