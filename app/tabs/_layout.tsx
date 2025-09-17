@@ -17,33 +17,47 @@ export default function TabsLayout() {
         )
       }}
       />
+
       <Tabs.Screen
-      name="find"
+      name="inbox"
       options={{
-        title: "Find",
+        title: "Inbox",
         tabBarIcon: ({ color, size}) => (
-          <Ionicons name= "search" size ={size} color={color}/>
+          <Ionicons name= "mail-outline" size ={size} color={color}/>
         )
       }}
       />
+
       <Tabs.Screen
-      name="add_item"
+      name="post"
       options={{
-        title: "Add Item",
+        title: "Post",
         tabBarIcon: ({ color, size}) => (
-          <Ionicons name= "add" size ={size} color={color}/>
+          <Ionicons name= "add-circle-outline" size ={size} color={color}/>
         )
       }}
       />
+
        <Tabs.Screen
-      name="profile"
+      name="my_stuff"
       options={{
-        title: "Profile",
+        title: "My Stuff",
         tabBarIcon: ({ color, size}) => (
           <Ionicons name= "person-circle-outline" size ={size} color={color}/>
         )
       }}
       />
+
+      <Tabs.Screen
+      name="notifications"
+      options={{
+        title: "Notifications",
+        tabBarIcon: ({ color, size}) => (
+          <Ionicons name= "notifications-outline" size ={size} color={color}/>
+        )
+      }}
+      />
+
     </Tabs>   
   )
 }
